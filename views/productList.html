@@ -1,0 +1,44 @@
+<div class="panel panel-default row">
+    <div class="col-xs-3">
+        <!--商品类别放这里-->
+        <a class="btn btn-block btn-default btn-lg"
+           ng-click="selectCategory()">
+            首页
+        </a>
+        <!--生成导航元素-->
+        <a class=" btn btn-block btn-default btn-lg"
+           ng-repeat="item in data.categories"
+           ng-class="item.category==selectedCategory?'btn-primary':''"
+           ng-click="selectCategory(item.category)">
+            {{item.category}}
+        </a>
+    </div>
+
+    <div class="col-xs-8">
+        <!--产品信息放这里-->
+        <div class="well"
+             ng-repeat="product in data.products | filter:filterByCategory | pagerFilter:pageNum:pageSize">
+            <!--<div class="well" ng-repeat="product in data.products | filter:{category:''}">-->
+            <h3>
+                <strong>{{product.name}}</strong>
+                <span class="pull-right label label-primary">{{product.price | currency:"RMB ￥"}}</span>
+            </h3>
+            <button class="btn btn-success btn-sm pull-right" ng-click="add(product)">加入购物车</button>
+            <img ng-src="{{product.imgsrc}}" style="padding-right: 10px;"/>
+            <span class="lead">{{product.desc}}</span>
+        </div>
+
+        <!--分页导航按钮
+            data.products => [1,2,3]
+            ng-repeat="number in [1,2,3]"
+        -->
+        <div class="pull-right btn-group">
+            <a class="btn btn-default"
+               ng-click="selectPage(number)"
+               ng-class="number==pageNum?'btn-primary':''"
+               ng-repeat="number in data.products | filter:filterByCategory | pageNavFilter:pageSize">
+                {{number}}
+            </a>
+        </div>
+    </div>
+</div>

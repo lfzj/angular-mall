@@ -1,0 +1,41 @@
+﻿<h2>您的购物车</h2>
+<div>
+    <div class="alert alert-warning" ng-show="cart.length==0">
+        您的购物车是空的。<a href="#productList" class="alert-link">继续购物</a>
+    </div>
+    <div ng-hide="cart.length==0">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>商品名称</th>
+                <th>数量</th>
+                <th class="text-right">单价</th>
+                <th class="text-right">小计</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in cart">
+                <td class="text-left">{{item.product.name}}</td>
+                <td class="text-center">{{item.number}}</td>
+                <td class="text-right">{{item.product.price | currency:"RMB ￥"}}</td>
+                <td class="text-right">{{item.product.price*item.number | currency:"RMB ￥"}}</td>
+                <td>
+                    <button class="btn btn-sm btn-warning" ng-click="remove(item)">删除</button>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">总金额:</td>
+                <td class="text-right">
+                    {{totalMoney() | currency:"RMB ￥"}}
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="text-center">
+            <a class="btn btn-primary" href="#productList">继续购物</a>
+            <a class="btn btn-primary" href="#placeOrder">提交订单</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+﻿<div class="alert alert-danger" ng-show="data.shipping.errStatus">
+    错误{{data.shipping.errStatus}}. 您的订单无法处理。
+    <a href="#placeOrder" class="alert-link">再次尝试</a>
+</div>
+
+<div class="well" ng-hide="data.shipping.errStatus">
+    <h2>Thanks!</h2>
+    感谢下单!我们将第一时间给您发货。如果您需要联系我们，请参考{{data.shipping.orderId}}。
+</div>

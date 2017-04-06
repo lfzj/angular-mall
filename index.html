@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <title>运动商城</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <style>
+        .navbar-right { float: right !important; margin-right: 5px;}
+        .navbar-text { margin-right: 10px; }
+    </style>
+
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/angular-route.min.js"></script>
+    <script src="js/filters/customFilters.js"></script>
+    <script src="js/controllers/shopCart.js"></script>
+    <script src="js/controllers/sportStore.js"></script>
+    <script src="js/controllers/productList.js"></script>
+    <script src="js/controllers/checkout.js"></script>
+</head>
+<body ng-controller="sportStoreCtrl">
+<h1>运动商城</h1>
+<div class="navbar navbar-inverse">
+    <a class="navbar-brand" href="#">运动商城</a>
+    <div class="navbar-right" ng-controller="cartCtrl">
+        <div class="navbar-text">
+            <b>您的购物车:</b>
+            {{count()}}个商品, {{money() | currency:"RMB ￥"}}
+        </div>
+        <a class="btn btn-default navbar-btn" href="#checkout">结账</a>
+    </div>
+</div>
+
+<!-- ngView -->
+<div ng-view></div>
+</body>
+</html>
